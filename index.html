@@ -9,64 +9,97 @@
 <body>
 
 <h1>DessertMash</h1>
-<p class="subtitle">Comparación A/B para descubrir los mejores postres</p>
+<p class="subtitle">Comparación A/B para descubrir los postres favoritos</p>
 
 <div class="container">
 
 <!-- CONFIGURA -->
+
 <div class="card">
 
 <h2>1) Configura</h2>
 
 <label>Perfil (público)</label>
+
 <select id="perfil">
 <option>Niños</option>
 <option>Adolescentes</option>
 <option>Adultos</option>
 <option>Amantes del chocolate</option>
+<option>Foodies</option>
 </select>
 
 <label>Contexto (pregunta)</label>
+
 <select id="contexto">
 <option>¿Cuál postre es más delicioso?</option>
 <option>¿Cuál postre pedirías después de cenar?</option>
 <option>¿Cuál postre recomendarías a un amigo?</option>
 </select>
 
-<button onclick="nuevoDuelo()">Nuevo duelo</button>
-<button onclick="reiniciar()">Reiniciar</button>
+<div class="buttons">
+
+<button class="btn-blue" onclick="nuevoDuelo()">Nuevo duelo</button>
+
+<button class="btn-red" onclick="reiniciar()">Reiniciar</button>
+
+</div>
+
+<p class="tip">
+Tip: usa Nuevo duelo si se repite una comparación
+</p>
 
 </div>
 
 <!-- VOTA -->
+
 <div class="card">
 
 <h2>2) Vota</h2>
 
+<div class="question">
 <p id="pregunta"></p>
+</div>
 
 <div class="duelo">
 
 <button class="postre" onclick="votar('A')">
-<span>A</span>
+<span class="tag">A</span>
 <p id="postreA"></p>
 </button>
 
 <button class="postre" onclick="votar('B')">
-<span>B</span>
+<span class="tag">B</span>
 <p id="postreB"></p>
 </button>
 
 </div>
 
+<p class="info">
+Cada voto actualiza el ranking (Elo).
+</p>
+
+<button class="btn-export" onclick="exportarCSV()">
+⬇ Exportar votos (CSV)
+</button>
+
+<button class="btn-top" onclick="actualizarRanking()">
+🍰 Ver Top 10
+</button>
+
 </div>
 
 <!-- RANKING -->
+
 <div class="card">
 
 <h2>3) Ranking (Top 10)</h2>
 
 <ol id="ranking"></ol>
+
+<p class="ranking-info">
+Ranking basado en votos de usuarios.
+</p>
 
 </div>
 
