@@ -1,128 +1,78 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>PopMash — Ranking de Canciones Pop</title>
-
-<link rel="stylesheet" href="style.css">
-
+<title>DessertMash</title>
+<link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
 
-<header class="wrap">
+<h1>DessertMash</h1>
+<p class="subtitle">Comparación A/B para descubrir los mejores postres</p>
 
-<h1>🎵 PopMash</h1>
-
-<p class="sub">
-Comparación A/B para descubrir las mejores canciones POP según el oyente.
-</p>
-
-</header>
-
-<main class="wrap grid">
+<div class="container">
 
 <!-- CONFIGURA -->
-
-<section class="card">
+<div class="card">
 
 <h2>1) Configura</h2>
 
-<label>Tipo de oyente</label>
+<label>Perfil (público)</label>
+<select id="perfil">
+<option>Niños</option>
+<option>Adolescentes</option>
+<option>Adultos</option>
+<option>Amantes del chocolate</option>
+</select>
 
-<select id="segmentSelect"></select>
+<label>Contexto (pregunta)</label>
+<select id="contexto">
+<option>¿Cuál postre es más delicioso?</option>
+<option>¿Cuál postre pedirías después de cenar?</option>
+<option>¿Cuál postre recomendarías a un amigo?</option>
+</select>
 
-<label>Contexto musical</label>
-
-<select id="contextSelect"></select>
-
-<div class="row">
-
-<button id="btnNewPair" class="ghost">🔁 Nuevo duelo</button>
-
-<button id="btnReset" class="danger">🧹 Reiniciar</button>
+<button onclick="nuevoDuelo()">Nuevo duelo</button>
+<button onclick="reiniciar()">Reiniciar</button>
 
 </div>
-
-<p class="hint">
-El ranking cambia según el tipo de oyente y el contexto.
-</p>
-
-</section>
 
 <!-- VOTA -->
+<div class="card">
 
-<section class="card">
+<h2>2) Vota</h2>
 
-<h2>2) Elige</h2>
+<p id="pregunta"></p>
 
-<p id="question" class="question">—</p>
+<div class="duelo">
 
-<div class="duel">
-
-<button id="btnA" class="pick">
-
-<span class="tag">A</span>
-
-<span id="labelA" class="title">—</span>
-
+<button class="postre" onclick="votar('A')">
+<span>A</span>
+<p id="postreA"></p>
 </button>
 
-<button id="btnB" class="pick">
-
-<span class="tag">B</span>
-
-<span id="labelB" class="title">—</span>
-
+<button class="postre" onclick="votar('B')">
+<span>B</span>
+<p id="postreB"></p>
 </button>
 
 </div>
 
-<p class="hint">Cada voto ajusta el ranking en tiempo real.</p>
-
-<div class="row">
-
-<button id="btnExport" class="ghost">
-⬇️ Exportar votos
-</button>
-
-<button id="btnShowTop" class="primary">
-🏆 Ver Top 10
-</button>
-
 </div>
-
-</section>
 
 <!-- RANKING -->
+<div class="card">
 
-<section class="card">
+<h2>3) Ranking (Top 10)</h2>
 
-<h2>3) Ranking Pop (Top 10)</h2>
+<ol id="ranking"></ol>
 
-<div id="topBox" class="topbox"></div>
+</div>
 
-<p class="hint">
-Ranking calculado con algoritmo Elo.
-</p>
+</div>
 
-</section>
-
-</main>
-
-<footer class="wrap foot">
-
-<small>
-Algoritmo de recomendación basado en comparación A/B.
-</small>
-
-</footer>
-
-<script src="app.js"></script>
+<script src="script.js"></script>
 
 </body>
 </html>
