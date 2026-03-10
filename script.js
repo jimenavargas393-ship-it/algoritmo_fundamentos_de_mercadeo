@@ -1,96 +1,147 @@
-const postres = [
-{nombre:"Cheesecake", rating:1000},
-{nombre:"Brownie", rating:1000},
-{nombre:"Tiramisú", rating:1000},
-{nombre:"Helado de chocolate", rating:1000},
-{nombre:"Flan", rating:1000},
-{nombre:"Tres leches", rating:1000},
-{nombre:"Cupcake", rating:1000},
-{nombre:"Donas", rating:1000},
-{nombre:"Pastel de zanahoria", rating:1000},
-{nombre:"Macarons", rating:1000}
-]
-
-let A
-let B
-
-function nuevoDuelo(){
-
-let i = Math.floor(Math.random()*postres.length)
-let j
-
-do{
-j = Math.floor(Math.random()*postres.length)
-}while(i===j)
-
-A=i
-B=j
-
-document.getElementById("postreA").innerText=postres[i].nombre
-document.getElementById("postreB").innerText=postres[j].nombre
-
-let pregunta=document.getElementById("contexto").value
-document.getElementById("pregunta").innerText=pregunta
-
+body{
+font-family: 'Segoe UI', sans-serif;
+background:#f7f5f2;
+margin:0;
+padding:30px;
+color:#333;
 }
 
-function votar(opcion){
-
-let ganador
-let perdedor
-
-if(opcion==="A"){
-ganador=A
-perdedor=B
-}else{
-ganador=B
-perdedor=A
+h1{
+text-align:center;
+color:#5a4b42;
 }
 
-actualizarElo(ganador,perdedor)
-actualizarRanking()
-nuevoDuelo()
-
+.subtitle{
+text-align:center;
+margin-bottom:30px;
+color:#8a7f78;
 }
 
-function actualizarElo(g,p){
-
-let k=32
-
-let Rg=postres[g].rating
-let Rp=postres[p].rating
-
-let Eg=1/(1+Math.pow(10,(Rp-Rg)/400))
-let Ep=1/(1+Math.pow(10,(Rg-Rp)/400))
-
-postres[g].rating = Rg + k*(1-Eg)
-postres[p].rating = Rp + k*(0-Ep)
-
+.container{
+display:flex;
+justify-content:center;
+gap:25px;
 }
 
-function actualizarRanking(){
-
-let ranking=[...postres]
-
-ranking.sort((a,b)=>b.rating-a.rating)
-
-let lista=document.getElementById("ranking")
-lista.innerHTML=""
-
-ranking.forEach(p=>{
-let li=document.createElement("li")
-li.innerText=p.nombre+" — "+p.rating.toFixed(0)
-lista.appendChild(li)
-})
-
+.card{
+background:white;
+padding:25px;
+border-radius:12px;
+width:300px;
+box-shadow:0 8px 20px rgba(0,0,0,0.08);
 }
 
-function reiniciar(){
-
-postres.forEach(p=>p.rating=1000)
-actualizarRanking()
-
+h2{
+margin-top:0;
+color:#5a4b42;
 }
 
-nuevoDuelo()
-actualizarRanking()
+label{
+display:block;
+margin-top:12px;
+font-weight:500;
+}
+
+select{
+width:100%;
+padding:10px;
+margin-top:6px;
+border-radius:6px;
+border:1px solid #ddd;
+}
+
+.buttons{
+display:flex;
+gap:10px;
+margin-top:15px;
+}
+
+button{
+border:none;
+padding:10px;
+border-radius:6px;
+cursor:pointer;
+font-weight:500;
+}
+
+.btn-blue{
+background:#a6c8ff;
+}
+
+.btn-red{
+background:#ffb4a2;
+}
+
+.tip{
+font-size:13px;
+margin-top:10px;
+color:#777;
+}
+
+.question{
+background:#f1f1f1;
+padding:10px;
+border-radius:8px;
+text-align:center;
+margin-bottom:15px;
+}
+
+.duelo{
+display:flex;
+gap:15px;
+}
+
+.postre{
+flex:1;
+background:#fff7f0;
+border:1px solid #ffe2cc;
+padding:18px;
+border-radius:10px;
+font-size:16px;
+}
+
+.postre:hover{
+background:#ffe9d6;
+}
+
+.tag{
+background:#ff9f43;
+color:white;
+padding:4px 8px;
+border-radius:5px;
+margin-right:5px;
+font-size:14px;
+}
+
+.info{
+font-size:13px;
+text-align:center;
+margin-top:10px;
+color:#777;
+}
+
+.btn-export{
+background:#bde0fe;
+width:100%;
+margin-top:10px;
+}
+
+.btn-top{
+background:#ffd166;
+width:100%;
+margin-top:10px;
+}
+
+ol{
+padding-left:20px;
+}
+
+li{
+margin-bottom:8px;
+}
+
+.ranking-info{
+font-size:12px;
+color:#777;
+margin-top:10px;
+}
