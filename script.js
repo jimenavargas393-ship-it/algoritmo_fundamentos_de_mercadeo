@@ -1,4 +1,4 @@
-function exportarExcel(){
+function exportarCSV(){
 
 let tabla = `
 <table>
